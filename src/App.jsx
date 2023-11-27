@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import Booklist from './Booklist'; // Note to self Make sure file name matches
 
 function App() {
-  const [count, setCount] = useState(0)
+  // Hooks to store books data and search terms
+  const [books, setBooks] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('javascript');
 
+  useEffect(() => {
+    // Put here to check if the API key has been correctly loaded from .env.local
+    const isApiKeySet = Boolean(import.meta.env.VITE_GOOGLE_BOOKS_API_KEY);
+    console.log('API Key is set:', isApiKeySet);
+
+    if (!isApiKeySet) {
+      console.error('API key is not set. Please check your .env.local file.');
+      return; // To prevent unnecessary fetch attempts
+    }
+
+    // Function to fetch data from Google Books API
+    const fetchData = async () => {
+      try {
+        
+        const response = await fetch(
+          `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=${import.meta.env.VITE_GOOGLE_BOOKS_API_KEY}`
+        );
+        const data = await response.json();
+        setBooks(data.items || []); // Update the books state with the fetched data, or an empty array if undefined
+      } catch (error) {
+        console.error('Error fetching data: ', error); // Log errors that occur during fetch
+      }
+    };
+
+    fetchData(); // Invoke the fetchData function when the component mounts or searchTerm changes
+  }, [searchTerm]); // Dependency array for useEffect
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="App">
+      <h1>Google Books Search</h1>
+      <input
+        type="text"
+        placeholder="Search for books"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)} // Update searchTerm state when input changes
+      />
+      <Booklist books={books} /> {/* Render the Booklist component, passing the books state*/}
+    </div>
+  );
 }
 
-export default App
+export default App; // Export App component as default export

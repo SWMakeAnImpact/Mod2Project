@@ -7,7 +7,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('javascript');
 
   useEffect(() => {
-    // Put here to check if the API key has been correctly loaded from .env.local
+    // Check if the API key has been correctly loaded from .env.local
     const isApiKeySet = Boolean(import.meta.env.VITE_GOOGLE_BOOKS_API_KEY);
     console.log('API Key is set:', isApiKeySet);
 

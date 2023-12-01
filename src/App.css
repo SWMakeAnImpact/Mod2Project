@@ -1,56 +1,72 @@
 /* App.css */
+/* Applying the Roboto font throughout the app */
+body, input, button {
+  font-family: 'Roboto', sans-serif;
+}
 
-/* Main container styling with a maximum width and centered */
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* General styling */
+.App {
   text-align: center;
+  padding: 2rem;
   background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); /* Luxury gradient background */
   color: #fff; /* White text for contrast */
 }
 
-/* Logo styling with hover effect */
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-  filter: drop-shadow(0 0 2em #646cffaa); /* Default shadow for tech feel */
+/* Styling for the search input */
+input[type="text"] {
+  border: 2px solid #fff;
+  background: transparent;
+  color: #fff;
+  padding: 0.5em 1em;
+  border-radius: 20px;
+  margin-bottom: 2em;
+  width: 250px;
+  font-size: 1em;
 }
 
-/* Enhanced hover effect for the logo with a brighter shadow */
-.logo:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+input[type="text"]::placeholder {
+  color: #bbb;
 }
 
-/* Keyframes for logo spin animation */
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Styling for the book list */
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
-/* Apply the animation to the logo if motion preference is not reduced */
-@media (prefers-reduced-motion: no-preference) {
-  .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Styling for individual book items */
+.book {
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white for luxury glass effect */
+  backdrop-filter: blur(10px); /* Glassmorphism effect */
+  border-radius: 10px;
+  padding: 1em;
+  width: 200px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+  transition: transform 0.3s ease-in-out;
 }
 
-/* Styling for card elements */
-.card {
-  padding: 2em;
-  background: rgba(255, 255, 255, 0.1); /* Slight transparency */
-  backdrop-filter: blur(5px); /* Blur effect for glassmorphism */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+.book:hover {
+  transform: scale(1.05); /* Slight scale effect on hover for interaction */
 }
 
-/* Style for 'read the docs' text */
-.read-the-docs {
-  color: #888; /* Lighter text color */
+/* Styling for book images */
+.book img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Shadow for images */
+}
+
+/* Titles and text styling */
+.book h3 {
+  color: #f9f871; /* Gold color for titles for a luxury feel */
+  margin-top: 0.5em;
+}
+
+.book p {
+  color: #ddd;
+  font-size: 0.9em;
+  margin-top: 0.2em;
 }

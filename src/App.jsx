@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Booklist from './Booklist'; // Note to self Make sure file name matches
+import './App.css'; // Importing App.css for styling
+import Booklist from './Booklist'; // Note to self: Make sure file name matches
 
 function App() {
   // Hooks to store books data and search terms
@@ -19,7 +20,6 @@ function App() {
     // Function to fetch data from Google Books API
     const fetchData = async () => {
       try {
-        
         const response = await fetch(
           `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=${import.meta.env.VITE_GOOGLE_BOOKS_API_KEY}`
         );
@@ -32,6 +32,7 @@ function App() {
 
     fetchData(); // Invoke the fetchData function when the component mounts or searchTerm changes
   }, [searchTerm]); // Dependency array for useEffect
+
   return (
     <div className="App">
       <h1>Google Books Search</h1>
@@ -41,7 +42,7 @@ function App() {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)} // Update searchTerm state when input changes
       />
-      <Booklist books={books} /> {/* Render the Booklist component, passing the books state*/}
+      <Booklist books={books} /> {/* Render the Booklist component, passing the books state */}
     </div>
   );
 }

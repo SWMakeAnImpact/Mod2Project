@@ -1,23 +1,30 @@
+/* App.css */
+
+/* Main container styling with a maximum width and centered */
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); /* Luxury gradient background */
+  color: #fff; /* White text for contrast */
 }
 
+/* Logo styling with hover effect */
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
+  filter: drop-shadow(0 0 2em #646cffaa); /* Default shadow for tech feel */
 }
+
+/* Enhanced hover effect for the logo with a brighter shadow */
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+/* Keyframes for logo spin animation */
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -27,16 +34,23 @@
   }
 }
 
+/* Apply the animation to the logo if motion preference is not reduced */
 @media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
+  .logo {
     animation: logo-spin infinite 20s linear;
   }
 }
 
+/* Styling for card elements */
 .card {
   padding: 2em;
+  background: rgba(255, 255, 255, 0.1); /* Slight transparency */
+  backdrop-filter: blur(5px); /* Blur effect for glassmorphism */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
 }
 
+/* Style for 'read the docs' text */
 .read-the-docs {
-  color: #888;
+  color: #888; /* Lighter text color */
 }
